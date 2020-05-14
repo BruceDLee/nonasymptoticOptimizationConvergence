@@ -1,6 +1,6 @@
 % Generates Figure 1 in 
-%   1) Lee, Seiler Finite Step Performance Guarantees for First Order Optimization
-%   Algorithms: Revisited from a Control Theoretic Perspective, arxiv 2020
+%   1) Lee, Seiler. Finite Step Performance of First-order Methods Using Interpolation
+%   Conditions Without Function Evaluations, arxiv 2020
 
 m = 1;
 Ls = [10, 30];
@@ -39,9 +39,9 @@ for L=Ls
     end
 
     rhos = zeros(3,1);
-    %compute asymptotic bound defined in 1)
+    %compute asymptotic bound defined in Theorem 2 of (1)
     for T=1:3
-        cyclic_pointwise_IQC_Yalmip
+        cyclic_pointwise_IQC
         rhos(T) = rho_star;
     end
 
@@ -53,9 +53,11 @@ for L=Ls
     xlabel('N')
     ylabel('b_*')
     %garyfyFigure
-    %print(gcf, "Figure1_L"+num2str(L)+".pdf", '-dpdf', '-fillpage')
-    %p = get(gcf,'Position');
-    %set(gcf,'Position',[p(1) p(2) p(3) p(4)*3/5]);
+    print(gcf, "Figure1_L"+num2str(L)+".pdf", '-dpdf', '-fillpage')
+    p = get(gcf,'Position');
+    set(gcf,'Position',[p(1) p(2) p(3) p(4)*3/5]);
     %myprint(gcf,"Figure1_L"+num2str(L))
 end
+
+
    

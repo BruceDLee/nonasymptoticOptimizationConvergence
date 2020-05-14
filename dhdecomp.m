@@ -32,7 +32,7 @@ function [P,b] = dhdecomp(M)
 % (See Section 3.5 and the proof of Theorem 3.7)
 
 % Tolerance for detecting zero entries
-tol = 100*eps;
+tol = 100000*eps;
 
 % Verify that M is a square, real matrix
 if ~( ismatrix(M) && size(M,1)==size(M,2) && isreal(M) )
