@@ -19,13 +19,10 @@ rate of the finite step performance bound.
 
 **References**
 
-[1] Lee, B. and Seiler, P. "Finite step performance of first-order methods using interpolation conditions without function evaluations," arxiv, 2020. 
-
+[1] Lee, B. and Seiler, P. "Finite step performance of first-order methods using interpolation conditions without function evaluations," arxiv, 2020.   
 [2] A. B. Taylor, J. M. Hendrickx, and F. Glineur, “Smooth strongly convex interpolation and exact worst-case performance 
-of first-order methods,” Mathematical Programming, vol. 161, pp. 307–345, (1–2) 2017. 
-
+of first-order methods,” Mathematical Programming, vol. 161, pp. 307–345, (1–2) 2017.   
 [3] A. B. Taylor, J. M. Hendrickx, and F. Glineur, “Performance estimation toolbox (PESTO): Automated worst-case analysis 
-of first-order optimization methods,” in 2017 IEEE 56th Annual Conference on Decision and Control (CDC), 2017, pp. 1278–1283.
-
+of first-order optimization methods,” in 2017 IEEE 56th Annual Conference on Decision and Control (CDC), 2017, pp. 1278–1283.  
 [4] L. Lessard, B. Recht, and A. Packard, “Analysis and design of optimization algorithms via integral quadratic constraints,”
 SIAM Journal on Optimization, vol. 26, no. 1, pp. 57–95, 2016.
