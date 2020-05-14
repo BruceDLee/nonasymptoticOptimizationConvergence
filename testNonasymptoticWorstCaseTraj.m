@@ -10,6 +10,7 @@ N = 12;
 alpha = zeros(N);
 beta = zeros(N);
 
+%let algorithm be time invariant heavy ball optimized for quadratics
 for i=1:N
     alpha(i) =  4/(sqrt(L)+sqrt(m))^2; 
     beta(i) =  ((sqrt(L)-1)/(sqrt(L)+1))^2;
@@ -27,11 +28,11 @@ end
 
 Cg(:,:,N+1) =  [1 0];
 
-[bub, blb, B_star, K] = nonasymptoticWorstCaseTraj(Ag,Bg,Cg,L,m,N);
+[bub, blb, B_star, R2] = nonasymptoticWorstCaseTraj(Ag,Bg,Cg,L,m,N);
 %B_star is [x(0)' (reshaped to R^(d \times n);u(0)';u(1)';...;u(N-1)']
-%K maps eta to z_tilde
+%R2 maps eta to z
 
-%compute full trajectory from start and inputs
+%compute full trajectory from x0 and inputs
 [~,d] = size(B_star);
 xs = zeros(N+1,2*d);
 xs(1,:) = [B_star(1,:), B_star(2,:)];
@@ -44,11 +45,6 @@ for i = 1:N
     xs(i+1,:) = (kron(Ag(:,:,i),eye(d))*xs(i,:)'+kron(Bg(:,:,i),eye(d))*us(i,:)')';
     ys(i+1,:) = (kron(Cg(:,:,i+1), eye(d))*xs(i+1,:)')';
 end
-
-% plot(ys)
-% xlabel('iteration')
-% ylabel('y')
-
 %%
 bub
 blb

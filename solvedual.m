@@ -1,13 +1,10 @@
-function [nu_star, H_star, Z_star] = solvedual(M0, K)
+function [nu_star, H_star, Z_star] = solvedual(M0, R2)
 %% description
 % solves max nu 
-%        st  M0 - K'HK \geq nu I
+%        st  M0 - R2' [0 H; H' 0] R2 \geq nu I
 %        H doubly hyperdominant
-% as expressed in Section IVb of 
-%   1) Lee, Seiler Finite Step Performance Guarantees for First Order Optimization
-%   Algorithms: Revisited from a Control Theoretic Perspective, arxiv 2020
 %% Yalmip
-N = size(K,1)/2;
+N = size(R2,1)/2;
 n = size(M0,1);
 nu = sdpvar(1);
 H = sdpvar(N,N,'full');
@@ -31,7 +28,7 @@ for i=1:N
     constraints = [constraints sum(H(:,i))>=0];
 end
 
-constraints = [constraints M0-K'*M*K >= nu*eye(n)];
+constraints = [constraints M0-R2'*M*R2 >= nu*eye(n)];
 
 %maximize nu by minimizing -nu
 ops = sdpsettings('solver','mosek','verbose',0,'debug',0);
@@ -40,4 +37,4 @@ optimize(constraints, -nu, ops);
 nu_star = value(nu);
 H_star = value(H);
 M_star = value(M);
-Z_star = M0-K'*M_star*K-nu_star*eye(n);
+Z_star = M0-R2'*M_star*R2-nu_star*eye(n);

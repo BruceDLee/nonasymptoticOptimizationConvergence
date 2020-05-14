@@ -1,8 +1,8 @@
-% Solves bound from Theorem 4 in 
-%   1) Lee, Seiler Finite Step Performance Guarantees for First Order Optimization
-%   Algorithms: Revisited from a Control Theoretic Perspective, arxiv 2020
+% Solves bound from Theorem 2 in 
+%   1) Lee, Seiler. Finite Step Performance of First-order Methods Using Interpolation
+%   Conditions Without Function Evaluations, arxiv 2020
 %  For heavy ball optimized for quadratics.
-% helper script to generate Figure 1 in 1)
+
 %% Define Problem Class
 %strongly convex with parameter m, L-Lipschitz with parameter L
 % Assumes that L,m and T are defined in workspace
@@ -51,8 +51,7 @@ Ahat = [A, zeros(n,ell); Bpsi_y*C Apsi];
 Bhat = [B; Bpsi_u+Bpsi_y*D];
 Chat = [Dpsi_y*C, Cpsi];
 Dhat = Dpsi_y*D+Dpsi_u;
-%% Solve for rho with bisection
-%% Using Yalmip - not currently working
+%% Solve for rho with bisection using Yalmip
 rhoub = 2.0;
 rholb = 0.0;
 rhotol = 10^(-4);
@@ -95,13 +94,11 @@ while (rhoub - rholb)>rhotol
     end
 end
 rho_star = rhoub;
-% disp(rho_star);
-% disp(eigs(P_star));
+
 % Z_star = [Ahat Bhat]'*P_star*[Ahat Bhat] - ...
 %               rho^2 *[eye(Ne) zeros(size(Bhat))]'*P_star*[eye(Ne) zeros(size(Bhat))]+ ...
 %               [Chat Dhat]'*M_star*[Chat Dhat];
 % disp(eigs(Z_star))
-% 
 
     
 
